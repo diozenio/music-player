@@ -1,0 +1,22 @@
+.controls-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.material-symbols-rounded {
+    color: #e1e1e6;
+    font-size: 36px;
+    cursor: pointer;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+    transition: all 0.2s ease-in-out;
+}
+
+.material-symbols-rounded:hover {
+    color: #a5a2b0;
+}
+
+
+
