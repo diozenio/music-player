@@ -1,4 +1,4 @@
-import { CSSProperties, PropsWithChildren, ReactElement, useCallback, useEffect, useState } from "react";
+import { CSSProperties, ReactElement, useCallback, useEffect, useState } from "react";
 import SongName from "./SongName";
 import Author from "./Author";
 import Image from "./Image";
