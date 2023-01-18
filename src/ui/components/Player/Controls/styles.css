@@ -7,6 +7,7 @@
 .material-symbols-rounded {
     color: #e1e1e6;
     font-size: 36px;
+    font-weight: 100;
     cursor: pointer;
     -webkit-user-select: none; /* Safari */
     -ms-user-select: none; /* IE 10 and IE 11 */
