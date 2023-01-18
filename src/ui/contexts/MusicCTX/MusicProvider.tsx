@@ -4,9 +4,17 @@ import { PropsWithChildren, useState, useCallback } from "react";
 function MusicProvider({ children }: PropsWithChildren) {
     const [isPaused, setIsPaused] = useState<boolean>(true);
     const [currentTime, setCurrentTime] = useState<number>(0);
-    const [duration, setDuration] = useState<number | undefined>();
-    const [title, setTitle] = useState<String>("");
-    const [subtitle, setSubtitle] = useState<String>("");
+    function resume() {
+        console.log("CTX Resume");
+        currentSong.play();
+        setIsPaused(false);
+    }
+
+    function pause() {
+        console.log("CTX Pause");
+        currentSong.pause();
+        setIsPaused(true);
+    }
 
     function resume() { }
     function stop() { }
