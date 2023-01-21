@@ -1,33 +1,34 @@
 import "./styles.css";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
+import { MusicCTX } from "../../../contexts/MusicCTX";
+import convertCurrentTime from "../../../../core/utils/convertCurrentTime";
 
 
 export default function ProgressBar() {
-  const [progress, setProgress] = useState<number>(0);
-  const [isHolding, setIsHolding] = useState<boolean>();
-
+  const { duration, setProgress, currentTime } = useContext(MusicCTX);
+  const inputRef = useRef<any>();
+  const [isHolding, setIsHolding] = useState(false);
   useEffect(() => {
-    // TO DO
-  }, [progress])
-
+    if (!isHolding) {
+      inputRef.current.value = currentTime;
+    }
+  }, [currentTime])
 
   return (
-    <div className="progress-container">
-      <div className="track"
-        onMouseMove={(e) => { if (isHolding) setProgress(e.pageX - e.currentTarget.offsetLeft); }}
-        onMouseDown={() => { setIsHolding(true) }}
-        onMouseUp={(e) => {
-          setIsHolding(false),
-            setProgress(e.pageX - e.currentTarget.offsetLeft);
+    <div className="progress-container" draggable={false}>
+      <input draggable={false} type="range" defaultValue={0} min={0} max={duration} ref={inputRef}
+        onMouseDown={() => {
+          setIsHolding(true);
         }}
-      >
-        <div className="track-progress" style={{ width: progress }}>
-        </div>
-      </div>
+        onMouseUp={(e) => {
+          setProgress(parseInt(e.currentTarget.value));
+          setIsHolding(false);
+        }}
+      />
       <div className="time">
-        <p>00:00</p>
-        <p>03:14</p>
+        <p>{convertCurrentTime(currentTime)}</p>
+        <p>{convertCurrentTime(duration!)}</p>
       </div>
     </div>
-  )
+  );
 }
