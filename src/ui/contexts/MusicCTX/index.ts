@@ -9,7 +9,7 @@ interface Props {
     songName: string;
     author: string;
     isPaused: boolean;
-    songLoaded: boolean;
+    isSongLoaded: boolean;
 }
 
 export const MusicCTX = createContext({} as Props);

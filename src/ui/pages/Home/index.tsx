@@ -6,7 +6,7 @@ import "./styles.css";
 function Home() {
     const { author, songName, songLoaded } = useContext(MusicCTX);
 
-    if(songLoaded) {
+    if(!!isSongLoaded) {
         return (
             <div className="container">
                 <Player style={{ gridArea: "A" }} isVertical={true}>

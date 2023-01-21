@@ -34,7 +34,7 @@ function MusicProvider({ children }: PropsWithChildren) {
         setIsPaused(currentSong.paused);
     }
 
-    const songLoaded = !!songName && !!author && !!currentSong && !!duration;
+    const isSongLoaded = !!songName && !!author && !!currentSong && !!duration;
 
     return (
         <MusicCTX.Provider value={{ songLoaded, currentTime, setProgress, duration, isPaused, togglePause, author, songName, currentSong }}>
