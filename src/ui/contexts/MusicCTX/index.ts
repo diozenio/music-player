@@ -1,18 +1,15 @@
 import { createContext } from "react";
 
 interface Props {
-    resume(): void;
-    stop(): void;
+    currentSong: HTMLAudioElement;
+    togglePause(): void;
     currentTime: number;
-    setCurrentTime: (seconds: number) => void;
+    setProgress: (seconds: number) => void;
     duration: number | undefined;
-    setDuration: (seconds: number) => void;
-    title: String;
-    setTitle: (title: string) => void;
-    subtitle: String;
-    setSubtitle: (subtitle: string) => void;
+    songName: string;
+    author: string;
     isPaused: boolean;
-    setIsPaused: (isPaused: boolean) => void;
+    songLoaded: boolean;
 }
 
 export const MusicCTX = createContext({} as Props);
