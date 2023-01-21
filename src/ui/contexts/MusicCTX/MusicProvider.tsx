@@ -1,5 +1,6 @@
 import { MusicCTX } from ".";
 import { PropsWithChildren, useState, useEffect } from "react";
+import Playlist from "../../../infra/playlist.json";
 
 function MusicProvider({ children }: PropsWithChildren) {
     const [isPaused, setIsPaused] = useState<boolean>(true);
@@ -8,6 +9,7 @@ function MusicProvider({ children }: PropsWithChildren) {
     const [currentSong, setCurrentSong] = useState<HTMLAudioElement>(new Audio());
     const [duration, setDuration] = useState<number>(0);
     const [currentTime, setCurrentTime] = useState<number>(0);
+    const [playlistPosition, setPlaylistPosition] = useState(0);
 
     useEffect(() => {
         const song = new Audio("audios/just_you_and_i.mp3");
