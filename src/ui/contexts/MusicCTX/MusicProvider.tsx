@@ -31,10 +31,9 @@ function MusicProvider({ children }: PropsWithChildren) {
         setIsPaused(false);
     }
 
-    function pause() {
-        console.log("CTX Pause");
-        currentSong.pause();
-        setIsPaused(true);
+    function togglePause() {
+        isPaused ? currentSong.play() : currentSong.pause();
+        setIsPaused(currentSong.paused);
     }
 
     function resume() { }
