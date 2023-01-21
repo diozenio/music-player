@@ -10,25 +10,45 @@ function MusicProvider({ children }: PropsWithChildren) {
     const [duration, setDuration] = useState<number>(0);
     const [currentTime, setCurrentTime] = useState<number>(0);
     const [playlistPosition, setPlaylistPosition] = useState(0);
+    const [albumCover, setAlbumCover] = useState<string>("")
 
     useEffect(() => {
-        const song = new Audio("audios/just_you_and_i.mp3");
+        loadSong();
+        console.log("CTX UseEffect");
+    }, []);
+
+    useEffect(() => {
+        console.log(playlistPosition);
+        loadSong();
+    }, [playlistPosition]);
+
+
+    function loadSong() {
+        const song = new Audio(Playlist[playlistPosition].path);
         song.ontimeupdate = () => {
             setProgress(song.currentTime);
         }
 
         song.onloadedmetadata = () => {
+            console.log("carregou");
             setCurrentSong(song);
             setDuration(song.duration);
+            isPaused ? song.pause() : song.play();
         }
-        setSongName("Just You and I");
-        setAuthor("Tom Walker");
-        console.log("CTX UseEffect");
-    }, []);
+        setSongName(Playlist[playlistPosition].name);
+        setAuthor(Playlist[playlistPosition].author);
+        setAlbumCover(Playlist[playlistPosition].cover);
+    }
 
-    function setProgress(seconds: number) {
-        currentSong.currentTime = seconds;
-        setCurrentTime(seconds);
+
+    function clearSong() {
+        currentSong.pause();
+        setProgress(0);
+        setCurrentSong(new Audio());
+        setDuration(0);
+        setCurrentTime(0);
+        setAuthor("");
+        setSongName("");
     }
 
     function togglePause() {
@@ -36,10 +56,33 @@ function MusicProvider({ children }: PropsWithChildren) {
         setIsPaused(currentSong.paused);
     }
 
+    function setProgress(seconds: number) {
+        currentSong.currentTime = seconds;
+        setCurrentTime(seconds);
+    }
+
+    function nextSong() {
+        clearSong()
+        if (playlistPosition === Playlist.length - 1) {
+            setPlaylistPosition(0);
+        } else {
+            setPlaylistPosition(playlistPosition + 1);
+        }
+    }
+
+    function previousSong() {
+        clearSong()
+        if (playlistPosition === 0) {
+            setPlaylistPosition(Playlist.length - 1);
+        } else {
+            setPlaylistPosition(playlistPosition - 1);
+        }
+    }
+
     const isSongLoaded = !!songName && !!author && !!currentSong && !!duration;
 
     return (
-        <MusicCTX.Provider value={{ songLoaded, currentTime, setProgress, duration, isPaused, togglePause, author, songName, currentSong }}>
+        <MusicCTX.Provider value={{ isSongLoaded: isSongLoaded, currentTime, setProgress, duration, isPaused, togglePause, author, songName, currentSong, nextSong, previousSong, albumCover }}>
             {children}
         </MusicCTX.Provider>
     );
