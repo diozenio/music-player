@@ -14,11 +14,9 @@ function MusicProvider({ children }: PropsWithChildren) {
 
     useEffect(() => {
         loadSong();
-        console.log("CTX UseEffect");
     }, []);
 
     useEffect(() => {
-        console.log(playlistPosition);
         loadSong();
     }, [playlistPosition]);
 
@@ -30,7 +28,6 @@ function MusicProvider({ children }: PropsWithChildren) {
         }
 
         song.onloadedmetadata = () => {
-            console.log("carregou");
             setCurrentSong(song);
             setDuration(song.duration);
             isPaused ? song.pause() : song.play();
