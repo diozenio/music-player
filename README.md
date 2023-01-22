@@ -1,6 +1,6 @@
 # Music Player Website with React and Typescript
 
-![](https://github.com/diozenio/music-player/gif.gif)
+![](./gif.gif)
 
 Welcome to my music player website made with React and Typescript! This repository is intended to be a learning experience to improve my knowledge in React and Typescript. This music player website provides the ability to play my favorite songs.
 
