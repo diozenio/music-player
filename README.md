@@ -4,6 +4,10 @@
 
 Welcome to my music player website made with React and Typescript! This repository is intended to be a learning experience to improve my knowledge in React and Typescript. This music player website provides the ability to play my favorite songs.
 
+## ✨ Credits
+
+Credits to [@Rocketseat](https://www.github.com/rocketseat) for creating the website design and the challenge proposal at the [#boracodar](https://boracodar.dev/) event.
+
 ## 💻 Technologies used
 
 This music player website is built with the following technologies:
